@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
     <layer-list xmlns:tools="http://schemas.android.com/tools"
         xmlns:android="http://schemas.android.com/apk/res/android"
         tools:ignore="MissingDefaultResource">
@@ -9,8 +9,7 @@
                 android:shape="ring"
                 android:thickness="8dp"
                 android:useLevel="false">
-                <solid android:color="#3F51B5"/>
+                <solid android:color="#4CAF50"/>
             </shape>
         </item>
     </layer-list>
-</selector>

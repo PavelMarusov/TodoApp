@@ -9,32 +9,32 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="end">
+        android:gravity="end"
+        android:orientation="vertical">
+
         <Button
             android:id="@+id/btnSkip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Skip"
-            android:onClick="onSkipClick"/>
+            android:onClick="onSkipClick"
+            android:text="Skip" />
 
 
     </LinearLayout>
-<com.google.android.material.tabs.TabLayout
-    android:id="@+id/tab_layout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-app:tabBackground="@drawable/tablayout"
-    app:tabGravity="center"/>
 
-
-
-
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:tabBackground="@drawable/tab_layout"
+        app:tabGravity="center"
+        />
 
 
 </RelativeLayout>

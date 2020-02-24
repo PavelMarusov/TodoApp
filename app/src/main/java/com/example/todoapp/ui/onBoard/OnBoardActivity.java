@@ -18,13 +18,13 @@ import com.example.todoapp.R;
 import com.google.android.material.tabs.TabLayout;
 
 public class OnBoardActivity extends AppCompatActivity {
-
+  private  ViewPager  pager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_board);
-        ViewPager  pager = findViewById(R.id.viewPager);
+        pager = findViewById(R.id.viewPager);
         pager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
         TabLayout tabLayout =findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(pager,true);
