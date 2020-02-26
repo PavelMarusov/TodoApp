@@ -9,7 +9,7 @@
 
     <string name="menu_home">Задачи</string>
     <string name="menu_gallery">Имена</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_slideshow">Заметки</string>
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
