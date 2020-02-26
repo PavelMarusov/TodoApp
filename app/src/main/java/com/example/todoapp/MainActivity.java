@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private final int RC_WRITE_EXTERNAL = 101;
     private File file;
     private File foldet;
-    EditText editText;
+    private EditText editText;
 
 
 
@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -92,10 +93,9 @@ public class MainActivity extends AppCompatActivity {
         String premision = Manifest.permission.WRITE_EXTERNAL_STORAGE;
         if (EasyPermissions.hasPermissions(this, premision)) {
             file = new File(Environment.getExternalStorageDirectory(), "TodoApp");
-            file.mkdir();
+            file.mkdirs();
             foldet = new File(file, "note.txt");
             try {
-
                 foldet.createNewFile();
                 FileOutputStream fos = new FileOutputStream(foldet);
                 fos.write(content.getBytes());
@@ -111,27 +111,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        editText  = findViewById(R.id.edit_text);
+        editText  = findViewById(R.id.ed_text);
         initFile(editText.getText().toString());
+        super.onBackPressed();
 
     }
 
-    public void save(String text){
-        File file = new File(Environment.getExternalStorageDirectory(),"note.txt");
 
-        try {
-            FileOutputStream fos = new FileOutputStream(file);
-            fos.write(text.getBytes());
-            fos.close();
-            Toast.makeText(this,"Saved",Toast.LENGTH_SHORT).show();
-        }catch (FileNotFoundException fnfE){
-            fnfE.printStackTrace();
-            Toast.makeText(this,"File not found",Toast.LENGTH_SHORT).show();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
