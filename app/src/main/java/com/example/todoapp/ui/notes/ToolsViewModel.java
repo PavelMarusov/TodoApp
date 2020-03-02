@@ -1,4 +1,4 @@
-package com.example.todoapp.ui.tools;
+package com.example.todoapp.ui.notes;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
