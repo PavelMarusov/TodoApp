@@ -48,8 +48,8 @@ public class NotesFragment extends Fragment {
     @Override
     // вызываем в онПауз для того чтобы сохраняло даже ести пользователь смахнет приложение
     public void onPause() {
-        super.onPause();
         save();//вызываем метод
+        super.onPause();
         }
 
 // второй метод записи данных implementation 'commons-io:commons-io:2.6' через библиотеку
