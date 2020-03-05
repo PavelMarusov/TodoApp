@@ -12,16 +12,20 @@
         android:id="@+id/editTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/EditTextStile"
         android:hint="Тема"/>
     <EditText
         android:id="@+id/editDesc"
+        style="@style/EditTextStile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Описание"/>
     <Button
 
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#ffff"
+        android:background="@drawable/bg_button"
         android:text="Save"
         android:onClick="onClick"/>
 

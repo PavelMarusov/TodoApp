@@ -26,6 +26,7 @@ import java.io.IOException;
 public class NotesFragment extends Fragment {
 
     EditText editText;
+    private File file;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -39,8 +40,16 @@ public class NotesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        editText = view.findViewById(R.id.ed_text);
-        read();
+        editText = view.findViewById(R.id.editText);
+        File folder = new File(Environment.getExternalStorageDirectory(),"TodoApp");
+        folder.mkdirs();// создает папку метод
+        file = new File(folder,"note.txt");// записываем файл в папку
+        try {
+            String text =FileUtils.readFileToString(file,"utf-8");
+            editText.setText(text);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Log.d("pop","notefragment read");
     }
 
@@ -56,9 +65,7 @@ public class NotesFragment extends Fragment {
     private void save() {
         String text = editText.getText().toString();// берем текст
         // создаем папку (обязательно потому что папку могут удалить и будет у нас ошибка)
-        File folder = new File(Environment.getExternalStorageDirectory(),"TodoApp");
-        folder.mkdirs();// создает папку метод
-        File file = new File(folder,"note.txt");// записываем файл в папку
+
         try {
             // FileUtils обязательно должен быть от апач
             FileUtils.writeStringToFile(file,text,"utf-8");// последний параметр это тип кода можно посмотреть в манифест файле

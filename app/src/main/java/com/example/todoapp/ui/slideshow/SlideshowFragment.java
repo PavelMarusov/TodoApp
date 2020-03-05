@@ -51,8 +51,8 @@ int size;
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==REQUEST_CODE && requestCode == Activity.RESULT_OK){
-            size = data.getExtras().getInt(EXTRA_CODE);
+        if (requestCode == 300 && resultCode == Activity.RESULT_OK){
+            size = data.getIntExtra("size",5);
             Log.d("pop","SlideShow OAR");
             editText.setTextSize(size);
         }

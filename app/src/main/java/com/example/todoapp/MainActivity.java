@@ -11,12 +11,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import android.os.Environment;
+import android.text.Layout;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.view.menu.MenuView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -31,7 +33,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -54,9 +58,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         boolean isShow = Prefs.getInstance(this).isShown();
         if (!isShow) {
             startActivity(new Intent(this, OnBoardActivity.class));
@@ -77,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -89,6 +97,9 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
 
+    }
+    public void onItemClick(View view0){
+        startActivity(new Intent(MainActivity.this, ProfileActivity.class));
     }
 // создание файла и запись его в память способ 1 через метод
     @AfterPermissionGranted(RC_WRITE_EXTERNAL)// если файл создастся по новой запустит метот по реквест коду
@@ -114,34 +125,13 @@ public class MainActivity extends AppCompatActivity {
             EasyPermissions.requestPermissions(this, "", RC_WRITE_EXTERNAL, premision);
         }
     }
-    public void read(){
-        File sdcard = new File(Environment.getExternalStorageDirectory(),"TodoApp") ;
-        File file = new File(sdcard,"note.txt");
-        StringBuilder text = new StringBuilder();
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String line;
-            while ((line = br.readLine()) != null) {
-                text.append(line);
-                text.append('\n');
-            }
-            br.close();
-        }
-        catch (IOException e) {
-        }
-        EditText editText = findViewById(R.id.ed_text);
-        editText.setText(text.toString());
-    }
 
     @Override
     public void onBackPressed() {
         editText  = findViewById(R.id.ed_text);
         initFile(editText.getText().toString());
         super.onBackPressed();
-
-    }// закоментили что бы проверить второй спосов в тулсфрагменте
-
-
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -170,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
         Fragment navHostFragment = getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         for(Fragment fragment : navHostFragment.getChildFragmentManager().getFragments()){
             fragment.onActivityResult(requestCode,resultCode,data);
+            Log.d("pop","OAR Main");
         }
         if (resultCode == RESULT_OK && requestCode == 100) {
             String text = data.getStringExtra("title");
@@ -185,12 +176,10 @@ public class MainActivity extends AppCompatActivity {
                 Prefs.getInstance(this).deleteAll();
                 finish();
             case R.id.text_size:
-                Intent intent = new Intent(MainActivity.this, SizeActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(this, SizeActivity.class);
+                startActivityForResult(intent,300);
 
         }
-
-
         return super.onOptionsItemSelected(item);
     }
 }
